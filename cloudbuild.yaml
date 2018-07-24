@@ -4,5 +4,5 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args: ['log']
   dir: aws-codebuild-jenkins-plugin
-options:
- machineType: 'N1_HIGHCPU_8'
+- name: 'amazonlinux:1'
+  entrypoint: 'ls'
