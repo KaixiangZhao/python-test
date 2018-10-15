@@ -1,7 +1,19 @@
 version: 0.2
 
 phases:
+  install:
+    commands:
+
+      # Upgrade AWS CLI to the latest version
+      - pip install --upgrade awscli
+  
   build:
     commands:
-      - pip install boto3
-      - python main.py
+
+      # Use AWS SAM to package the application by using AWS CloudFormation
+      - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml
+
+artifacts:
+  type: zip
+  files:
+- template-export.yml
